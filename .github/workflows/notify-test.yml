@@ -1,0 +1,22 @@
+﻿name: notify-test
+on:
+  workflow_dispatch: {}   # 手動実行ボタン
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send LINE push via Messaging API
+        run: |
+          cat > body.json <<'JSON'
+          {
+            "to": "${{ secrets.LINE_TO_USER_ID }}",
+            "messages": [
+              { "type": "text", "text": "テスト通知 OK: $(date -u +%Y-%m-%dT%H:%M:%SZ)" }
+            ]
+          }
+          JSON
+          curl -sS -X POST https://api.line.me/v2/bot/message/push \
+               -H "Authorization: Bearer ${{ secrets.xDRLYRTChQoxrPAu+tQyjIqF7vuO0iihJ0/aPgsThN3uDKckMscpGPmFnuHAvgSrAkSYCmw2VUAA+WXCwLWAQ5fr3DbUp7DO53Dep/oN6xSl6ep+EkvjkDCiNmZrZNKEZ53LoLNHVSD3IeoiuALhRQdB04t89/1O/w1cDnyilFU= }}" \
+               -H "Content-Type: application/json" \
+               -d @body.json
