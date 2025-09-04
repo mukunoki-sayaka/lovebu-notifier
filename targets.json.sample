@@ -1,0 +1,18 @@
+[
+  {
+    "name": "らぶぶ（例）",
+    "url": "https://example.com/products/lovebu",
+    "in_stock_css": ".product-form .add-to-cart, .buy-button",
+    "in_stock_text_contains": [
+      "カートに入れる",
+      "購入する",
+      "在庫あり"
+    ],
+    "out_of_stock_css": ".sold-out, .out-of-stock, button[disabled]",
+    "out_of_stock_text_contains": [
+      "SOLD OUT",
+      "在庫なし",
+      "売り切れ"
+    ]
+  }
+]
