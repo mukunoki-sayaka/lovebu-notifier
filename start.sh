@@ -2,7 +2,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-POLL_MS="${POLL_INTERVAL_MS:-800}"
+POLL_MS="${POLL_INTERVAL_MS:-500}"
 JITTER_MS="${JITTER_MS:-200}"
 
 echo "[start] loop: ${POLL_MS}ms ± ${JITTER_MS}ms"
@@ -16,7 +16,7 @@ while :; do
   # ジッター付きスリープ
   sleep "$(python - <<'PY'
 import os,random
-base=int(os.environ.get('POLL_INTERVAL_MS','800'))
+base=int(os.environ.get('POLL_INTERVAL_MS','500'))
 jit=int(os.environ.get('JITTER_MS','200'))
 print(max(100, base + random.randint(-jit, jit))/1000)
 PY
